@@ -100,4 +100,30 @@ describe 'Current weather information with APPID' do
       expect(weather['list']).to be_kind_of(Array)
     end
   end
+
+  describe 'searching by zip' do
+    context 'when the zip is found' do
+      let(:weather) do
+        VCR.use_cassette('integration/current_by_zip') do
+          OpenWeather::Current.zip('11205', options)
+        end
+      end
+
+      it 'returns results' do
+        expect(weather).to include('weather')
+      end
+    end
+
+    context 'when the zip is not found' do
+      let(:weather) do
+        VCR.use_cassette('integration/current_not_found_zip') do
+          OpenWeather::Current.zip('112FOO', options)
+        end
+      end
+
+      it 'returns an attribute with code 404' do
+        expect(weather['cod']).to eq('404')
+      end
+    end
+  end
 end

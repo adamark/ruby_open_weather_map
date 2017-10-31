@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/weather?APPID=1111111111&units=metric&zip=11205,us
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.openweathermap.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Tue, 31 Oct 2017 18:18:44 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '436'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?APPID=1111111111&units=metric&zip=11205%2cus"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-73.97,"lat":40.69},"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"base":"stations","main":{"temp":13.67,"pressure":1018,"humidity":37,"temp_min":13,"temp_max":15},"visibility":16093,"wind":{"speed":5.58,"deg":264.507},"clouds":{"all":1},"dt":1509472560,"sys":{"type":1,"id":2121,"message":0.1668,"country":"US","sunrise":1509449168,"sunset":1509486730},"id":0,"name":"Brooklyn","cod":200}'
+    http_version: 
+  recorded_at: Tue, 31 Oct 2017 18:18:44 GMT
+recorded_with: VCR 3.0.3

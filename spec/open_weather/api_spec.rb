@@ -101,6 +101,22 @@ describe 'Open weather Current API' do
     end
   end
 
+  context '.zip' do
+    it 'returns current weather for brooklyn' do
+      response = VCR.use_cassette('api/current_zip_valid') do
+        OpenWeather::Current.zip('11205')
+      end
+      expect(response['cod']).to eq(200)
+    end
+
+    it 'returns error if the zip is invalid' do
+      response = VCR.use_cassette('api/current_zip_invalid') do
+        OpenWeather::Current.zip('1120FFF')
+      end
+      expect(response['cod']).to eq('404')
+    end
+  end
+
   context 'units option' do
     it 'returns the current temperature in requested units' do
       response = VCR.use_cassette('api/current_city_metric_valid') do
@@ -168,6 +184,22 @@ describe 'Open weather Forecast API' do
     end
   end
 
+  context '.zip' do
+    it 'returns forecast weather for zip in brooklyn' do
+      response = VCR.use_cassette('api/forecast_zip_valid') do
+        OpenWeather::Forecast.zip('11205')
+      end
+      expect(response['cod']).to eq(200)
+    end
+
+    it 'returns error if the zip is invalid' do
+      response = VCR.use_cassette('api/forecast_zip_invalid') do
+        OpenWeather::Forecast.zip('1120FFF')
+      end
+      expect(response['cod']).to eq('404')
+    end
+  end
+
   context 'units option' do
     it 'returns the forecast in requested units' do
       response = VCR.use_cassette('api/forecast_city_metric_valid') do
@@ -232,6 +264,22 @@ describe 'Open weather Forecast Daily API' do
         OpenWeather::ForecastDaily.geocode('181', '181')
       end
       response['cod'].to_s.should eq('404')
+    end
+  end
+
+  context '.zip' do
+    it 'return forecast weather for zip in brooklyn' do
+      response = VCR.use_cassette('api/forecast_daily_zip_valid') do
+        OpenWeather::ForecastDaily.zip('11205')
+      end
+      expect(response['cod']).to eq(200)
+    end
+
+    it 'returns error if the zip is invalid' do
+      response = VCR.use_cassette('api/forecast_daily_zip_invalid') do
+        OpenWeather::ForecastDaily.zip('11FFF')
+      end
+      expect(response['cod']).to eq('404')
     end
   end
 

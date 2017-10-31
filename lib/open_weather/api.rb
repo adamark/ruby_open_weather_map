@@ -17,6 +17,15 @@ module OpenWeather
     def geocode(lat, lon, options = {})
       new(options.merge(lat: lat, lon: lon)).retrieve
     end
+
+    # Zip, a string value. Eg, "11205"
+    # options accepts a country_code that defaults to 'us'
+    # Usage:
+    #  - OpenWeather::Current.zip("11205")
+    #  - OpenWeather::Current.zip("H1A 0A1", country_code: 'ca')
+    def zip(zip, options = {})
+      new(options.merge(zip: zip)).retrieve
+    end
   end
 
   module SeveralCitiesClassMethods

@@ -25,11 +25,14 @@ module OpenWeather
 
     def extract_options!(options)
       valid_options = [ :id, :lat, :lon, :cnt, :city, :lang, :units, :APPID,
-        :country, :bbox, :q, :type]
+        :country, :bbox, :q, :type, :zip]
 
       options.keys.each { |k| options.delete(k) unless valid_options.include?(k) }
 
-      if options[:city] || options[:country]
+      if options[:zip]
+        country = options.delete(:country) || 'us'
+        options[:zip] = "#{options[:zip]},#{country}"
+      elsif options[:city] || options[:country]
         options[:q] = "#{options[:country]},#{options[:city]}"
         options.delete(:city)
         options.delete(:country)

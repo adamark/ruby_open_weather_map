@@ -44,6 +44,9 @@ OpenWeather::Current.city_id("1273874", options)
 # get current weather by geocode. (lat, lon)
 OpenWeather::Current.geocode(9.94, 76.26 , options)
 
+# get current weather by zip code.
+OpenWeather::Current.zip("60647", options)
+
 # get current weather for a list of city ids
 OpenWeather::Current.cities([524901, 703448, 2643743], options)
 
@@ -79,6 +82,9 @@ OpenWeather::Forecast.city_id("1273874", options)
 # get weather forecast by geocode. (lat, lon)
 OpenWeather::Forecast.geocode(9.94, 76.26, options)
 
+# get weather forecast by zip code.
+OpenWeather::Forecast.zip("60647", options)
+
 # get daily weather forecast by city name
 OpenWeather::ForecastDaily.city("Cochin, IN", options)
 
@@ -90,6 +96,9 @@ OpenWeather::ForecastDaily.city_id("1273874", options)
 
 # get daily weather forecast by geocode. (lat, lon)
 OpenWeather::ForecastDaily.geocode(9.94, 76.26, options)
+
+# get daily weather forecast by zip code.
+OpenWeather::ForecastDaily.zip("60647", options)
 
 # get daily weather forecast for 6 days
 options[:cnt] = 6
